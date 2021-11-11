@@ -1,9 +1,12 @@
 package vista;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -14,16 +17,12 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.JTableHeader;
 
-import entidades.Compra;
-import entidades.Criptomoneda;
+import entidades.CompraDto;
+import entidades.CriptomonedaDto;
 import modelo.GestionCeldas;
 import modelo.GestionEncabezadoTabla;
 import modelo.ModeloTabla;
 import persistencia.Singleton;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JDesktopPane;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -31,8 +30,8 @@ public class VentanaPrincipal extends JFrame {
 	private JScrollPane scrollPane2;
 	private JTable tablaCriptos;
 	private JTable tablaCompras;
-	private ArrayList<Criptomoneda> listaCripto;
-	private ArrayList<Compra> listaCompra;
+	private ArrayList<CriptomonedaDto> listaCripto;
+	private ArrayList<CompraDto> listaCompra;
 	private ModeloTabla modelo;
 	private AgregarCompraInternal internal;
 	JDesktopPane desktopPane;
@@ -131,7 +130,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	private void construirTabla2() {
-		// llamamos
+		// llamamos, diferente
 		listaCompra = Singleton.getInstancia2().listarCompras();
 		
 		ArrayList<String> titulosList = new ArrayList<>();

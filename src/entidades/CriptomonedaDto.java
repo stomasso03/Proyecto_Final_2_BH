@@ -1,12 +1,12 @@
 package entidades;
 
-public class Criptomoneda {
-	
+public class CriptomonedaDto {
+
 	private int id;
 	private String nombre;
 	private double precio;
-	
-	public Criptomoneda (int id, String nombre, double precio){
+
+	public CriptomonedaDto(int id, String nombre, double precio) {
 		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
@@ -34,6 +34,6 @@ public class Criptomoneda {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
-	} 	
-	
+	}
+
 }

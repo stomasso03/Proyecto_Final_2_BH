@@ -1,27 +1,21 @@
 package entidades;
 
-public class Compra {
-	
+public class CompraDto {
+
 	private int id;
 	private double cantidad;
 	private double precio;
 	private String fecha;
 	private String moneda;
-	
-	public Compra(int id, String moneda, double cantidad, double precio, String fecha) throws Exception {
-		if (precio<0){
-			throw new Exception("el precio no puede ser negativo");
-		}
-		if (cantidad<0){
-			throw new Exception("el precio no puede ser negativo");
-		}
+
+	public CompraDto(int id, String moneda, double cantidad, double precio, String fecha) throws Exception {
+
 		this.id = id;
 		this.moneda = moneda;
 		this.cantidad = cantidad;
 		this.precio = precio;
 		this.fecha = fecha;
 	}
-	
 
 	public int getId() {
 		return id;
@@ -61,7 +55,8 @@ public class Compra {
 
 	public void setMoneda(String moneda) {
 		this.moneda = moneda;
-	}	
+	}
 	
 	
+
 }

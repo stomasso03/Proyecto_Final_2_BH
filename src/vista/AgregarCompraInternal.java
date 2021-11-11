@@ -1,28 +1,25 @@
 package vista;
 
-import java.awt.EventQueue;
-
-import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import entidades.Compra;
-import persistencia.Singleton;
-
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.beans.PropertyVetoException;
-import java.awt.event.ActionEvent;
-import javax.swing.JButton;
+import modelo.Compra;
 
 public class AgregarCompraInternal extends JInternalFrame {
 	private JTextField textCantidad;
 	private JTextField textPrecio;
 	private JTextField textDia;
 	private JTextField textMes;
-	private JTextField textAÃ±o;
+	private JTextField textAño;
 	private JComboBox comboBoxMoneda;
 	private Compra compra;
 	private int i = 4;
@@ -86,10 +83,10 @@ public class AgregarCompraInternal extends JInternalFrame {
 		textMes.setBounds(207, 179, 29, 17);
 		panel.add(textMes);
 		
-		textAÃ±o = new JTextField();
-		textAÃ±o.setColumns(10);
-		textAÃ±o.setBounds(266, 179, 60, 17);
-		panel.add(textAÃ±o);
+		textAño = new JTextField();
+		textAño.setColumns(10);
+		textAño.setBounds(266, 179, 60, 17);
+		panel.add(textAño);
 		
 		JLabel lblNewLabel_1 = new JLabel(" /");
 		lblNewLabel_1.setBounds(189, 178, 17, 20);
@@ -109,11 +106,11 @@ public class AgregarCompraInternal extends JInternalFrame {
 		lblMoneda.setBounds(74, 68, 67, 14);
 		panel.add(lblMoneda);
 		
-		JButton btnNewButton = new JButton("AÃ±adir");
+		JButton btnNewButton = new JButton("Añadir");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				i += 1;
-				aÃ±adirCompra();
+				añadirCompra();
 			}
 		});
 		btnNewButton.setBounds(282, 219, 89, 23);
@@ -121,11 +118,11 @@ public class AgregarCompraInternal extends JInternalFrame {
 
 	}
 	
-	public void aÃ±adirCompra() {
+	public void añadirCompra() {
 		try {
 			Double cantidad = Double.parseDouble(textCantidad.getText());
 			String moneda = comboBoxMoneda.getToolTipText();
-			String fecha = textDia.getText() + "/" + textMes.getText() + "/" + textAÃ±o.getText();
+			String fecha = textDia.getText() + "/" + textMes.getText() + "/" + textAño.getText();
 			Double precio = Double.parseDouble(textPrecio.getText());
 			int id = i;
 			compra = new Compra(id, moneda, cantidad,precio, fecha);	
