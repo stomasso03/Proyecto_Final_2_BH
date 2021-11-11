@@ -19,6 +19,8 @@ import javax.swing.table.JTableHeader;
 
 import entidades.CompraDto;
 import entidades.CriptomonedaDto;
+import modelo.Compra;
+import modelo.Criptomoneda;
 import modelo.GestionCeldas;
 import modelo.GestionEncabezadoTabla;
 import modelo.ModeloTabla;
@@ -61,35 +63,35 @@ public class VentanaPrincipal extends JFrame {
 		setTitle("Listar Cliente");
 		getContentPane().setLayout(null);
 		setExtendedState(MAXIMIZED_BOTH);
-		
+
 		desktopPane = new JDesktopPane();
 		desktopPane.setBounds(10, 33, 3000, 3000);
 		getContentPane().add(desktopPane);
-		
+
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(63, 91, 574, 300);
 		desktopPane.add(scrollPane);
-		
+
 		scrollPane2 = new JScrollPane();
 		scrollPane2.setBounds(700, 91, 574, 300);
 		desktopPane.add(scrollPane2);
-		
+
 		tablaCriptos = new JTable();
 		scrollPane.setViewportView(tablaCriptos);
-		
+
 		tablaCompras = new JTable();
 		scrollPane2.setViewportView(tablaCompras);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 5000, 22);
 		desktopPane.add(menuBar);
-		
+
 		JMenu mnNewMenu = new JMenu("Inicio");
 		menuBar.add(mnNewMenu);
-		
+
 		JMenuItem mntmNewMenuItem = new JMenuItem("Guardar...");
 		mnNewMenu.add(mntmNewMenuItem);
-		
+
 		JButton btnNewButton = new JButton("Agregar compra");
 		desktopPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
@@ -100,16 +102,18 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 		btnNewButton.setBounds(125, 427, 154, 23);
-		//getContentPane().add(btnNewButton);
-		
+		// getContentPane().add(btnNewButton);
+
 		construirTabla();
 		construirTabla2();
 	}
-	
+
 	private void construirTabla() {
 		// llamamos
-		listaCripto = Singleton.getInstancia().listarCripto();
-		
+		// listaCripto = Singleton.getInstancia().listarCripto();
+		Criptomoneda criptomoneda = new Criptomoneda();
+		listaCripto = criptomoneda.listar();
+
 		ArrayList<String> titulosList = new ArrayList<>();
 
 		titulosList.add("ID");
@@ -128,13 +132,16 @@ public class VentanaPrincipal extends JFrame {
 		Object[][] data = obtenerMatrizDatos(titulosList);
 		construirTabla(titulos, data);
 	}
-	
+
 	private void construirTabla2() {
 		// llamamos, diferente
-		listaCompra = Singleton.getInstancia2().listarCompras();
-		
-		ArrayList<String> titulosList = new ArrayList<>();
-
+		// listar
+		//listaCompra = .listarCompras();
+		Criptomoneda criptomoneda = new Criptomoneda();
+		listaCripto = criptomoneda.listar();
+		Compra compra = new Compra();
+		listaCompra = compra.listar();
+		ArrayList<String> titulosList = new ArrayList<String>();
 		titulosList.add("Moneda");
 		titulosList.add("Cantidad");
 		titulosList.add("Precio");
@@ -152,7 +159,7 @@ public class VentanaPrincipal extends JFrame {
 		Object[][] data = obtenerMatrizDatos2(titulosList);
 		construirTabla2(titulos, data);
 	}
-	
+
 	private Object[][] obtenerMatrizDatos(ArrayList<String> titulosList) {
 		/*
 		 * se crea la matriz donde las filas son dinamicas pues corresponde a todos los
@@ -161,7 +168,7 @@ public class VentanaPrincipal extends JFrame {
 		 */
 		String informacion[][] = new String[listaCripto.size()][titulosList.size()];
 //		listaProductos.sort(new OrdenarClienteEdad());
-		
+
 		for (int x = 0; x < informacion.length; x++) {
 			informacion[x][0] = listaCripto.get(x).getId() + "";
 			informacion[x][1] = listaCripto.get(x).getNombre() + "";
@@ -178,7 +185,7 @@ public class VentanaPrincipal extends JFrame {
 		 */
 		String informacion[][] = new String[listaCompra.size()][titulosList.size()];
 //		listaProductos.sort(new OrdenarClienteEdad());
-		
+
 		for (int x = 0; x < informacion.length; x++) {
 			informacion[x][0] = listaCompra.get(x).getMoneda() + "";
 			informacion[x][1] = listaCompra.get(x).getCantidad() + "";
@@ -187,6 +194,7 @@ public class VentanaPrincipal extends JFrame {
 		}
 		return informacion;
 	}
+
 	private void construirTabla(String[] titulos, Object[][] data) {
 		modelo = new ModeloTabla(data, titulos);
 		// se asigna el modelo a la tabla
@@ -222,8 +230,8 @@ public class VentanaPrincipal extends JFrame {
 		vertical.setValue(vertical.getMaximum());
 
 	}
-	
-	private void construirTabla2 (String[] titulos, Object[][] data) {
+
+	private void construirTabla2(String[] titulos, Object[][] data) {
 		modelo = new ModeloTabla(data, titulos);
 		// se asigna el modelo a la tabla
 		tablaCompras.setModel(modelo);
@@ -259,9 +267,9 @@ public class VentanaPrincipal extends JFrame {
 		vertical.setValue(vertical.getMaximum());
 
 	}
-	
+
 	public void agregarInternalCompra() {
-		if (internal == null || internal.isClosed()) { //crea un formulario solo si no hay otro ya creado
+		if (internal == null || internal.isClosed()) { // crea un formulario solo si no hay otro ya creado
 			internal = new AgregarCompraInternal();
 			internal.setVisible(true);
 			desktopPane.add(internal);

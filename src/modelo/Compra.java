@@ -1,18 +1,30 @@
 package modelo;
 
+import java.util.ArrayList;
+
+import entidades.CompraDto;
+import entidades.CriptomonedaDto;
+import persistencia.CriptomonedaPer;
+import persistencia.ICompraPer;
+import persistencia.ICriptomoneda;
+
 public class Compra {
-	
+
 	private int id;
 	private double cantidad;
 	private double precio;
 	private String fecha;
 	private String moneda;
-	
+
+	public Compra() {
+
+	}
+
 	public Compra(int id, String moneda, double cantidad, double precio, String fecha) throws Exception {
-		if (precio<0){
+		if (precio < 0) {
 			throw new Exception("el precio no puede ser negativo");
 		}
-		if (cantidad<0){
+		if (cantidad < 0) {
 			throw new Exception("el precio no puede ser negativo");
 		}
 		this.id = id;
@@ -21,7 +33,6 @@ public class Compra {
 		this.precio = precio;
 		this.fecha = fecha;
 	}
-	
 
 	public int getId() {
 		return id;
@@ -61,7 +72,16 @@ public class Compra {
 
 	public void setMoneda(String moneda) {
 		this.moneda = moneda;
-	}	
-	
-	
+	}
+
+	public ArrayList<CompraDto> listar() {
+		// TODO Auto-generated method stub
+		ArrayList<CompraDto> lista = new ArrayList<CompraDto>();
+		// luego voy a cambiarlo por CompraDao()
+		// I per = new CriptomonedaPer();
+		ICompraPer per = new CompraPer();
+		lista = per.listar();
+		return lista;
+	}
+
 }

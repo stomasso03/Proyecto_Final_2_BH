@@ -8,7 +8,7 @@ public class CompraDto {
 	private String fecha;
 	private String moneda;
 
-	public CompraDto(int id, String moneda, double cantidad, double precio, String fecha) throws Exception {
+	public CompraDto(int id, String moneda, double cantidad, double precio, String fecha)  {
 
 		this.id = id;
 		this.moneda = moneda;
