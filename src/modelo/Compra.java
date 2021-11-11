@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import entidades.CompraDto;
 import entidades.CriptomonedaDto;
+import persistencia.CompraPer;
 import persistencia.CriptomonedaPer;
 import persistencia.ICompraPer;
 import persistencia.ICriptomoneda;

@@ -40,11 +40,13 @@ public class Singleton {
 		}
 		return instancia;
 	}
-	
-	public ArrayList<CriptomonedaDto> listarCripto(){
+
+	public ArrayList<CriptomonedaDto> listarCripto() {
 		return listaCripto;
 	};
-	
-	
+
+	public ArrayList<CompraDto> listarCompra() {
+		return listaCompras;
+	};
 
 }
