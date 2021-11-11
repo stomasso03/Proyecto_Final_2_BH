@@ -36,4 +36,10 @@ public class CriptomonedaDto {
 		this.precio = precio;
 	}
 
+	// para que en el jcombobox muestre el nombre
+	@Override
+	public String toString() {
+		return nombre;
+	}
+
 }
